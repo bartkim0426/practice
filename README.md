@@ -7,3 +7,6 @@ edit, update 기능 구현 중 edit이 되지 않음
 
 3/29 13:11
 - CRUD 구현, comment create 구현 완료
+
+3/29 15:15
+- CRUD: comment update, delete 구현 완료

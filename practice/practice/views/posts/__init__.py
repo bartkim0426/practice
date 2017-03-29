@@ -5,4 +5,4 @@ from .create import create
 from .edit import edit
 from .update import update
 from .delete import delete
-from .comment import comment_create
+from .comment import *

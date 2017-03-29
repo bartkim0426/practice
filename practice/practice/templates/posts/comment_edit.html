@@ -7,14 +7,18 @@
 <p> {{ post.content }} </p>
 
 <ul>
-{% for comment in comments %}
-<li id="comment-{{ comment.id }}">{{ comment.content }}
-<a href={% url "posts:comment-edit" post_id=post.id comment_id=comment.id %}> 댓글수정하기 </a>
-<a href={% url "posts:comment-delete" post_id=post.id comment_id=comment.id %}> 댓글삭제하기 </a>
-</li>
+{% for post_comment in comments %}
+{% if comment == post_comment %}
+<li><form action={% url "posts:comment-update" post_id=post.id comment_id=comment.id %} method=POST>
+		{% csrf_token %}
+		<input type="text" name="content" value="{{ comment.content }}">
+		<input type="submit" value="수정하기">
+</li></form>
+{% else %}
+	<li id="comment-{{ post_comment.id }}">{{ post_comment.content }}</li>
+{% endif %}
 {% endfor %}
 </ul>
-
 
 <h2> new comment </h2>
 <form action={% url "posts:comment-create" post_id=post.id %} method=POST>
