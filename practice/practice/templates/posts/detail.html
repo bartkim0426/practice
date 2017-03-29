@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> detail 페이지입니다..</h1>
+<b> <a href={% url "posts:list" %}>list로 가기</a> </b>
+<h2> {{ post.title }}/ ({{ comments.count }}) </h2>
+<p> {{ post.content }} </p>
+
+<ul>
+{% for comment in comments %}
+<li id="comment-{{ comment.id }}">{{ comment.content }}</li>
+{% endfor %}
+</ul>
+
+
+<h2> new comment </h2>
+<form action={% url "posts:comment-create" post_id=post.id %} method=POST>
+	{% csrf_token %}
+	<input type="text" name="content" placeholder="댓글">
+	<input type="submit" value="댓글달기">
+</form>
+
+<b> <a href={% url "posts:edit" post_id=post.id %}>수정하기</a> </b>/
+<b> <a href={% url "posts:delete" post_id=post.id %}>삭제하기</a> </b>
+{% endblock %}

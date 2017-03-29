@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> list 페이지입니다..</h1>
+<p>
+
+{% for post in posts %}
+<a href={{ post.get_absolute_url}}>
+	<h2> {{ post.title }}
+		/({{ post.comment_set.count }}) </h2>
+	</a>	
+	<p> {{ post.content }} </p>
+{% endfor %}
+
+<a href={% url "posts:new" %}> 새글쓰기 </a>
+</p>
+{% endblock %}

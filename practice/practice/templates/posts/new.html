@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> New Post </h3>
+<form action="/posts/create/" method=POST>
+	{% csrf_token %}
+	<input type="text" name="title" placeholder="제목">
+	<input type="text" name="content" placeholder="본문">
+	<input type="submit" value="제출">
+</form>
+{% endblock %}

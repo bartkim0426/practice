@@ -1,0 +1,8 @@
+-r production.txt
+
+flake8
+requests
+ipython
+beautifulsoup4
+django-debug-toolbar
+django-extensions

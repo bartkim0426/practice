@@ -1,6 +1,21 @@
-<h3> ## count ## 개의 영화 정보 </h3>
+{% extends "base.html" %}
+
+{% block title %} movie_news {% endblock %}
+
+{% block content %}
+<h1> movie page </h1>
+<h3> {{ posts_list | length }}개의 영화 정보 </h3>
+
 <form action="/movie/" method=GET>
 	<input type="text" name="search">
 	<input type="submit" name="검색">
 </form>
-<p> ## movie_content ## </p>
+
+<p>
+{% for post in posts_list %}
+<h3>{{ post.title }}</h3>
+<img src={{ post.image }} alt={{ post.title }}>
+{{ post.content }}
+</p>
+{% endfor %}
+{% endblock %}
