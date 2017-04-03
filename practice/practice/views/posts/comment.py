@@ -26,6 +26,7 @@ def comment_edit(request, post_id, comment_id):
             "comments": comments,
             },
             )
+
 def comment_update(request, post_id, comment_id):
     content = request.POST.get("content")
 

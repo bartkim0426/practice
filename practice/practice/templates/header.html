@@ -1,3 +1,10 @@
 <header>
 	헤더
+	<ul>
+		<li><a href="{% url "auth:signup" %}">signup</a></li>
+		<li><a href="{% url "auth:login" %}">login</a></li>
+		<li><a href="{% url "posts:list" %}">list</a></li>
+		<li><a href="{% url "posts:new" %}">new post</a></li>
+		<li> {{ request.user }} </li>
+	</ul>
 </header>

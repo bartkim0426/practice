@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^about$', about, name="about"),
     url(r'^policy/', include('practice.urls.policy', namespace="policy")),
     url(r'^posts/', include('practice.urls.posts', namespace="posts")),
+    url(r'^auth/', include('practice.urls.auth', namespace="auth")),
 ]
