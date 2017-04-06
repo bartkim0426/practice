@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls.base import reverse
+from django.contrib.auth.models import User
 
 
 class PostManager(models.Manager):
@@ -10,6 +11,7 @@ class PostManager(models.Manager):
 class Post(models.Model):
     objects = PostManager()
 
+    user = models.ForeignKey(User)
     title = models.CharField(max_length=120)
     content = models.TextField()
     is_public = models.BooleanField(

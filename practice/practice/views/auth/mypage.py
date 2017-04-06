@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def new(request):
-
+def mypage(request):
+    
     return render(
-            request,
-            "posts/new.html",
-            {},
-            )
+        request,
+        "auth/mypage.html",
+        {},
+    )

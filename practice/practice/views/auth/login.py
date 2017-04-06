@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from IPython import embed;
+from django.contrib.auth import authenticate, login as auth_login
 
 
 def login(request):
@@ -13,7 +12,7 @@ def login(request):
         user = User.objects.get(username=username)
 
         if user.is_authenticated():
-            login(request, user)
+            auth_login(request, user)
 
             return redirect(
                     reverse(

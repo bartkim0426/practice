@@ -1,10 +1,16 @@
 <header>
 	헤더
 	<ul>
-		<li><a href="{% url "auth:signup" %}">signup</a></li>
-		<li><a href="{% url "auth:login" %}">login</a></li>
 		<li><a href="{% url "posts:list" %}">list</a></li>
 		<li><a href="{% url "posts:new" %}">new post</a></li>
+		{% if request.user.is_authenticated %}
+			<li><a href="{% url "auth:logout" %}">logout</a></li>
+			<li><a href="{% url "auth:mypage" %}">mypage</a></li>
+		{% else %}
+			<li><a href="{% url "auth:signup" %}">signup</a></li>
+			<li><a href="{% url "auth:login" %}">login</a></li>
+			<li><a href="{% url "auth:mypage" %}">mypage</a></li>
+		{% endif %}
 		<li> {{ request.user }} </li>
 	</ul>
 </header>

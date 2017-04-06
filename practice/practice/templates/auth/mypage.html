@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2> My Page </h2>
+
+<div class="post_all">
+	{{ request.user.username }} 님이 쓰신 {{ request.user.post_set.count }} 개의 글입니다.
+	<ul>
+		{% for post in request.user.post_set.all %}
+		<li><a href="{% url "posts:detail" post_id=post.id %}">{{ post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+
+<div class="comment_all">
+	{{ request.user.username }} 님이 쓰신 {{ request.user.comment_set.count }} 개의 글입니다.
+	<ul>
+		{% for comment in request.user.comment_set.all %}
+		<li><a href="{{ comment.get_absolute_url }}">{{ comment.content }}</a> in <a href="{% url "posts:detail" post_id=comment.post.id %}">{{ comment.post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}
