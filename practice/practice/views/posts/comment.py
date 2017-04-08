@@ -1,16 +1,24 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate
 from practice.models import Post
 
 
 def comment_create(request, post_id):
+
     content = request.POST.get("content")
 
-    post = Post.objects.get(id=post_id)
-    comment = post.comment_set.create(
-            content = content
-            )
+    if (request.user.is_authenticated):
+        user = request.user
 
-    return redirect(comment)
+        post = Post.objects.get(id=post_id)
+        comment = post.comment_set.create(
+                content = content,
+                user = user,
+                )
+
+        return redirect(comment)
+
+    return redirect("auth:login")
 
 def comment_edit(request, post_id, comment_id):
     post = Post.objects.get(id=post_id)
